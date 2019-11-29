@@ -1,7 +1,7 @@
 package com.clickbus.challengeproject.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -46,12 +48,14 @@ public class Place implements Serializable{
 	
 	@NotNull
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@Column(name="createdAt")
-	private LocalDate createdAt;
+	@Column(name="created_at")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
 	
-	@Column(name="updatedAt")
+	@Column(name="updated_at")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private LocalDate updatedAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
 	
 	public Long getId() {
 		return id;
@@ -93,19 +97,19 @@ public class Place implements Serializable{
 		this.state = state;
 	}
 
-	public LocalDate getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDate getUpdatedAt() {
+	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(LocalDate updatedAt) {
+	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 

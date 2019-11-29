@@ -7,8 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +27,10 @@ import com.clickbus.challengeproject.service.PlaceService;
  * @author Rafael Klaczok
  *
  */
-
 @RestController
 @RequestMapping("/places")
 public class PlaceController {
-
+		
 	@Autowired
 	PlaceService placeService;
 	
@@ -46,28 +43,20 @@ public class PlaceController {
 	}
 	
 	@GetMapping
-	public List<Place> listByName(PlaceFilter placeFilter, Pageable pageable){
-		return placeService.filterByName(placeFilter, pageable);
+	public List<Place> listByName(PlaceFilter placeFilter){
+		return placeService.filterByName(placeFilter);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Place> findById(@PathVariable long id){
-		try {
-		return ResponseEntity.ok(placeService.findById(id));
-		}catch (EmptyResultDataAccessException e) {
-			return ResponseEntity.notFound().build();
-		}
-		
+	public ResponseEntity<Place> findById(@PathVariable long id){		
+		return ResponseEntity.ok(placeService.findById(id));			
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place place){
-		try {
-			Place placeSave = placeService.update(id, place);
-			return ResponseEntity.ok(placeSave);
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-		}
+		Place placeSave = placeService.update(id, place);
+		return ResponseEntity.ok(placeSave);
+
 	}
 	
 	@PostMapping
