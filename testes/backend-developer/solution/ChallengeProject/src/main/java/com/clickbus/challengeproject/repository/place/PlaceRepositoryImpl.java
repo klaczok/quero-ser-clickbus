@@ -15,13 +15,14 @@ import javax.persistence.criteria.Root;
 import org.springframework.util.StringUtils;
 
 import com.clickbus.challengeproject.model.Place;
-import com.clickbus.challengeproject.model.Place_;
+import com.clickbus.challengeproject.model.PlaceMetaModel;
 import com.clickbus.challengeproject.repository.filter.PlaceFilter;
 
 public class PlaceRepositoryImpl implements PlaceRepositoryQuery{
 
 	@PersistenceContext
 	EntityManager manager;
+	
 	
 	@Override
 	public List<Place> filterByName(PlaceFilter placeFilter) {
@@ -38,6 +39,9 @@ public class PlaceRepositoryImpl implements PlaceRepositoryQuery{
 		return query.getResultList() ;
 		
 		
+		
+		
+		
 	}
 
 
@@ -46,7 +50,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryQuery{
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		if(!StringUtils.isEmpty(placeFilter.getName())) {
 			predicates.add(
-					builder.like(builder.lower(root.get(Place_.name)), "%" + placeFilter.getName().toLowerCase()+"%")
+					builder.like(builder.lower(root.get(PlaceMetaModel.name)), "%" + placeFilter.getName().toLowerCase()+"%")
 					);
 		}
 		return predicates.toArray(new Predicate[predicates.size()]);
