@@ -11,7 +11,7 @@
 1.	[Criar objeto (PLACE)](https://clickbus-rafael.herokuapp.com/places/ "Criar objeto") (Metodo POST)
 2.	[Editar objeto (PLACE)](https://clickbus-rafael.herokuapp.com/places/{id} "Editar objeto") (Metodo PUT)
 3.	[Buscar por ID (PLACE)](https://clickbus-rafael.herokuapp.com/places/{id} "Buscar objeto") (Metodo GET)
-4.	[Buscar por Nome (PLACE)](https://clickbus-rafael.herokuapp.com/places?name{string do nome} "Buscar objeto por nome") (Metodo GET)
+4.	[Buscar por Nome (PLACE)](https://clickbus-rafael.herokuapp.com/places?name={name} "Buscar objeto por nome") (Metodo GET)
 5.	[Buscar todos (PLACE)](https://clickbus-rafael.herokuapp.com/places/ "Buscar todos") (Metodo GET)
 
 
